@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: May 24, 2020 at 08:03 PM
+-- Generation Time: Jun 02, 2020 at 04:25 PM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.12
 
@@ -113,6 +113,7 @@ INSERT INTO `enseignant` (`ID_Utilisateur`, `ID_Cours`) VALUES
 (68, 15),
 (84, 15),
 (78, 16),
+(94, 19),
 (71, 21),
 (76, 21),
 (80, 22),
@@ -240,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `groupe` (
   `ID_Promotion` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `groupe_id_promo` (`ID_Promotion`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `groupe`
@@ -290,7 +291,16 @@ INSERT INTO `groupe` (`ID`, `Nom`, `ID_Promotion`) VALUES
 (42, 'SI Inter 1', 4),
 (43, 'SI Inter 2', 4),
 (44, 'SE Fr', 4),
-(45, 'SE Inter', 4);
+(45, 'SE Inter', 4),
+(46, 'Finance', 5),
+(47, 'Environnement Fr', 5),
+(48, 'Environnement Inter', 5),
+(49, 'OCRES', 5),
+(50, 'Santé', 5),
+(51, 'SI Fr', 5),
+(52, 'SI Inter', 5),
+(53, 'SE Fr', 5),
+(54, 'SE Inter', 5);
 
 -- --------------------------------------------------------
 
@@ -330,7 +340,7 @@ CREATE TABLE IF NOT EXISTS `salle` (
   `ID_Site` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `salle_id_site` (`ID_Site`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `salle`
@@ -388,7 +398,8 @@ INSERT INTO `salle` (`ID`, `Nom`, `Capacite`, `ID_Site`) VALUES
 (49, 'Salle G013', 25, 4),
 (50, 'Salle G014', 25, 4),
 (51, 'Salle G015', 25, 4),
-(52, 'Salle G016', 25, 4);
+(52, 'Salle G016', 25, 4),
+(53, 'ZOOM', 300, 8);
 
 -- --------------------------------------------------------
 
@@ -403,13 +414,30 @@ CREATE TABLE IF NOT EXISTS `seance` (
   `Date` date NOT NULL,
   `Heure_Debut` time NOT NULL,
   `Heure_Fin` time NOT NULL,
-  `Etat` int(11) NOT NULL,
+  `Etat` tinyint(1) NOT NULL,
   `ID_Cours` int(11) NOT NULL,
   `ID_Type` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `seance_id_cours` (`ID_Cours`),
   KEY `seance_id_type` (`ID_Type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `seance`
+--
+
+INSERT INTO `seance` (`ID`, `Semaine`, `Date`, `Heure_Debut`, `Heure_Fin`, `Etat`, `ID_Cours`, `ID_Type`) VALUES
+(2, 17, '2020-04-20', '08:30:00', '10:00:00', 1, 4, 1),
+(3, 17, '2020-04-20', '15:30:00', '17:00:00', 1, 4, 3),
+(4, 17, '2020-04-21', '10:15:00', '11:45:00', 1, 25, 1),
+(5, 17, '2020-04-21', '13:45:00', '15:15:00', 1, 25, 2),
+(6, 17, '2020-04-21', '15:30:00', '17:00:00', 1, 15, 1),
+(7, 17, '2020-04-22', '08:30:00', '10:00:00', 1, 1, 2),
+(8, 17, '2020-04-22', '10:15:00', '11:45:00', 1, 14, 1),
+(9, 17, '2020-04-22', '12:00:00', '13:30:00', 1, 26, 1),
+(10, 17, '2020-04-22', '15:30:00', '17:00:00', 1, 14, 2),
+(11, 17, '2020-04-22', '17:15:00', '18:45:00', 1, 26, 3),
+(12, 17, '2020-04-23', '15:30:00', '16:30:00', 1, 19, 6);
 
 -- --------------------------------------------------------
 
@@ -425,6 +453,23 @@ CREATE TABLE IF NOT EXISTS `seance_enseignants` (
   KEY `seance_enseignants_id_enseignant` (`ID_Enseignant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `seance_enseignants`
+--
+
+INSERT INTO `seance_enseignants` (`ID_Seance`, `ID_Enseignant`) VALUES
+(2, 2),
+(3, 2),
+(10, 3),
+(9, 62),
+(8, 66),
+(5, 70),
+(7, 75),
+(11, 80),
+(6, 84),
+(4, 85),
+(12, 94);
+
 -- --------------------------------------------------------
 
 --
@@ -438,6 +483,40 @@ CREATE TABLE IF NOT EXISTS `seance_groupes` (
   PRIMARY KEY (`ID_Seance`,`ID_Groupe`),
   KEY `seance_groupes_id_groupe` (`ID_Groupe`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `seance_groupes`
+--
+
+INSERT INTO `seance_groupes` (`ID_Seance`, `ID_Groupe`) VALUES
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(11, 1),
+(12, 1),
+(2, 2),
+(4, 2),
+(8, 2),
+(9, 2),
+(10, 2),
+(12, 2),
+(2, 3),
+(4, 3),
+(8, 3),
+(9, 3),
+(12, 3),
+(2, 4),
+(4, 4),
+(8, 4),
+(9, 4),
+(12, 7),
+(12, 8);
 
 -- --------------------------------------------------------
 
@@ -453,6 +532,23 @@ CREATE TABLE IF NOT EXISTS `seance_salles` (
   KEY `seance_salles_id_salle` (`ID_Salle`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `seance_salles`
+--
+
+INSERT INTO `seance_salles` (`ID_Seance`, `ID_Salle`) VALUES
+(3, 2),
+(11, 5),
+(5, 19),
+(6, 21),
+(7, 21),
+(2, 34),
+(8, 35),
+(9, 35),
+(4, 37),
+(10, 39),
+(12, 53);
+
 -- --------------------------------------------------------
 
 --
@@ -464,7 +560,7 @@ CREATE TABLE IF NOT EXISTS `site` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `site`
@@ -477,7 +573,8 @@ INSERT INTO `site` (`ID`, `Nom`) VALUES
 (4, 'EIFFEL 4'),
 (5, 'EIFFEL 5'),
 (6, 'VELL'),
-(7, 'CNAM');
+(7, 'CNAM'),
+(8, 'ONLINE');
 
 -- --------------------------------------------------------
 
@@ -521,7 +618,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `Prenom` varchar(255) NOT NULL,
   `Droit` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `utilisateur`
@@ -620,7 +717,8 @@ INSERT INTO `utilisateur` (`ID`, `Email`, `Password`, `Nom`, `Prenom`, `Droit`) 
 (90, 'assia.soukane@ece.fr', 'azerty', 'SOUKANE', 'Assia', 3),
 (91, 'francesco.turzi@orange.fr', 'azerty', 'TURZI', 'Francesco', 3),
 (92, 'rafik.zitouni@ece.fr', 'azerty', 'ZITOUNI', 'Rafik', 3),
-(93, 'rfercoq@inseec-edu.com', 'azerty', 'FERCOQ', 'Robin', 3);
+(93, 'rfercoq@inseec-edu.com', 'azerty', 'FERCOQ', 'Robin', 3),
+(94, 'nicolas.dacher@ece.fr', 'azerty', 'DACHER', 'Nicolas', 3);
 
 --
 -- Constraints for dumped tables
