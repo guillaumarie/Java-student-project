@@ -5,6 +5,7 @@
  */
 package Controleur;
 
+import Vue.Vue;
 import vue.Connexion;
 
 /**
@@ -20,7 +21,9 @@ public class Main {
         
         gestionModele.ConnexionBDD();
         gestionModele.InitialiserTables();
-        boolean b = gestionVue.ConnexionUtilisateur(gestionModele, "christophe.baujault@ece.fr", "admin");
+        System.out.println(gestionVue.getId());
+        boolean b = gestionVue.ConnexionUtilisateur(gestionModele, "killian.lennon@edu.ece.fr", "2222");
         System.out.println(b);
+        Connexion con = new Connexion(gestionVue, gestionModele);
     }
 }

@@ -263,6 +263,7 @@ public class GestionVue {
                     listePrenomProfs.add(nomsProfs);
 
                 }
+                break;
         }
     }
     
