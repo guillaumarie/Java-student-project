@@ -58,20 +58,18 @@ public class TypeDAO extends BaseDAO<Type> {
     }
 
     @Override
-    public Type find(int id) throws SQLException {
-        Type actuel = types.get(0);
-        for (int i = 1; i < types.size()+1; i++) {
+    public Type find(int id) {
+        for (int i = 0; i < types.size()+1; i++) {
+            Type actuel = types.get(i);
             if (actuel.getId() == id) {
                 return actuel;
-            } else {
-                actuel = types.get(i);
             }
         }
         Type pasTrouve = new Type();
         return pasTrouve;
     }
     
-    public String nom(int id) throws SQLException {
+    public String nom(int id) {
         Type type = this.find(id);
         String nom = type.getNom();
         return nom;

@@ -50,7 +50,7 @@ public class SeanceSalleDAO extends BaseDAO<SeanceSalle> {
     }
     
     @Override
-    public void update(SeanceSalle seMaj, Connection conn) throws SQLException {
+    public void update(SeanceSalle ssMaj, Connection conn) throws SQLException {
     }
 
     public void update(SeanceSalle ssAct, SeanceSalle ssMaj, Connection conn) throws SQLException {
@@ -68,32 +68,29 @@ public class SeanceSalleDAO extends BaseDAO<SeanceSalle> {
     }
     
     @Override
-    public SeanceSalle find(int id) throws SQLException {
+    public SeanceSalle find(int id) {
         SeanceSalle ss = new SeanceSalle();
         return ss;
     }
 
-    public SeanceSalle find(int seance, int salle) throws SQLException {
-        SeanceSalle actuel = seanceSalles.get(0);
-        for (int i = 1; i < seanceSalles.size()+1; i++) {
+    public SeanceSalle find(int seance, int salle) {
+        for (int i = 0; i < seanceSalles.size()+1; i++) {
+            SeanceSalle actuel = seanceSalles.get(i);
             if ((actuel.getSeance() == seance) && (actuel.getSalle() == salle)) {
                 return actuel;
-            } else {
-                actuel = seanceSalles.get(i);
             }
         }
         SeanceSalle pasTrouve = new SeanceSalle();
         return pasTrouve;
     }
     
-    public ArrayList<Integer> listeIdSalles(int seance) throws SQLException {
+    public ArrayList<Integer> listeIdSalles(int seance) {
         ArrayList<Integer> listeSalles = new ArrayList<>();
-        SeanceSalle actuel = seanceSalles.get(0);
-        for (int i = 1; i < seanceSalles.size()+1; i++) {
+        for (int i = 0; i < seanceSalles.size()+1; i++) {
+            SeanceSalle actuel = seanceSalles.get(i);
             if (actuel.getSeance() == seance) {
                 listeSalles.add(actuel.getSalle());
             }
-            actuel = seanceSalles.get(i);
         }
         return listeSalles;
     }

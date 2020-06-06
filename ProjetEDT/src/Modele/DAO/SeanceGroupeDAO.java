@@ -68,44 +68,40 @@ public class SeanceGroupeDAO extends BaseDAO<SeanceGroupe> {
     }
     
     @Override
-    public SeanceGroupe find(int id) throws SQLException {
+    public SeanceGroupe find(int id) {
         SeanceGroupe sg = new SeanceGroupe();
         return sg;
     }
 
-    public SeanceGroupe find(int seance, int groupe) throws SQLException {
-        SeanceGroupe actuel = seanceGroupes.get(0);
-        for (int i = 1; i < seanceGroupes.size()+1; i++) {
+    public SeanceGroupe find(int seance, int groupe) {
+        for (int i = 0; i < seanceGroupes.size()+1; i++) {
+            SeanceGroupe actuel = seanceGroupes.get(i);
             if ((actuel.getSeance() == seance) && (actuel.getGroupe() == groupe)) {
                 return actuel;
-            } else {
-                actuel = seanceGroupes.get(i);
             }
         }
         SeanceGroupe pasTrouve = new SeanceGroupe();
         return pasTrouve;
     }
     
-    public ArrayList<Integer> listeIdSeances(int groupe) throws SQLException {
+    public ArrayList<Integer> listeIdSeances(int groupe) {
         ArrayList<Integer> listeSeances = new ArrayList<>();
-        SeanceGroupe actuel = seanceGroupes.get(0);
-        for (int i = 1; i < seanceGroupes.size()+1; i++) {
+        for (int i = 0; i < seanceGroupes.size()+1; i++) {
+            SeanceGroupe actuel = seanceGroupes.get(i);
             if (actuel.getGroupe() == groupe) {
                 listeSeances.add(actuel.getSeance());
             }
-            actuel = seanceGroupes.get(i);
         }
         return listeSeances;
     }
     
-    public ArrayList<Integer> listeIdGroupes(int seance) throws SQLException {
+    public ArrayList<Integer> listeIdGroupes(int seance) {
         ArrayList<Integer> listeGroupes = new ArrayList<>();
-        SeanceGroupe actuel = seanceGroupes.get(0);
-        for (int i = 1; i < seanceGroupes.size()+1; i++) {
+        for (int i = 0; i < seanceGroupes.size()+1; i++) {
+            SeanceGroupe actuel = seanceGroupes.get(i);
             if (actuel.getSeance() == seance) {
                 listeGroupes.add(actuel.getGroupe());
             }
-            actuel = seanceGroupes.get(i);
         }
         return listeGroupes;
     }

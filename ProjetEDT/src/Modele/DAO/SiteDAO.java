@@ -58,20 +58,18 @@ public class SiteDAO extends BaseDAO<Site> {
     }
 
     @Override
-    public Site find(int id) throws SQLException {
-        Site actuel = sites.get(0);
-        for (int i = 1; i < sites.size()+1; i++) {
+    public Site find(int id) {
+        for (int i = 0; i < sites.size()+1; i++) {
+            Site actuel = sites.get(i);
             if (actuel.getId() == id) {
                 return actuel;
-            } else {
-                actuel = sites.get(i);
             }
         }
         Site pasTrouve = new Site();
         return pasTrouve;
     }
     
-    public String nom(int id) throws SQLException {
+    public String nom(int id) {
         Site site = this.find(id);
         String nom = site.getNom();
         return nom;

@@ -72,18 +72,16 @@ public class EnseignantDAO extends BaseDAO<Enseignant> {
     
     // Override inutile car un enseignant est identifié par 2 attributs en clé primaire
     @Override
-    public Enseignant find(int id) throws SQLException {
+    public Enseignant find(int id) {
         Enseignant enseignant = new Enseignant();
         return enseignant;
     }
     
-    public Enseignant find(int id, int cours) throws SQLException {
-        Enseignant actuel = enseignants.get(0);
-        for (int i = 1; i < enseignants.size(); i++) {
+    public Enseignant find(int id, int cours) {
+        for (int i = 0; i < enseignants.size(); i++) {
+            Enseignant actuel = enseignants.get(i);
             if ((actuel.getId() == id) && (actuel.getCours() == cours)) {
                 return actuel;
-            } else {
-                actuel = enseignants.get(i);
             }
         }
         Enseignant pasTrouve = new Enseignant();
@@ -91,26 +89,24 @@ public class EnseignantDAO extends BaseDAO<Enseignant> {
     }
     
     // Pour connexion
-    public Enseignant find(String email, String password) throws SQLException {
-        Enseignant actuel = enseignants.get(0);
-        for (int i = 1; i < enseignants.size(); i++) {
-            if ((actuel.getEmail() == email) && (actuel.getPassword() == password)) {
+    public Enseignant find(String email, String password) {
+        for (int i = 0; i < enseignants.size(); i++) {
+            Enseignant actuel = enseignants.get(i);
+            if ((actuel.getEmail().equals(email)) && (actuel.getPassword().equals(password))) {
                 return actuel;
-            } else {
-                actuel = enseignants.get(i);
             }
         }
         Enseignant pasTrouve = new Enseignant();
         return pasTrouve;
     }
     
-    public String nom(int id) throws SQLException {
+    public String nom(int id) {
         Enseignant enseignant = this.find(id);
         String nom = enseignant.getNom();
         return nom;
     }
     
-    public String prenom(int id) throws SQLException {
+    public String prenom(int id) {
         Enseignant enseignant = this.find(id);
         String nom = enseignant.getPrenom();
         return nom;

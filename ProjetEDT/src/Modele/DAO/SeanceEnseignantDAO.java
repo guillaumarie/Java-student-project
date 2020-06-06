@@ -68,25 +68,23 @@ public class SeanceEnseignantDAO extends BaseDAO<SeanceEnseignant> {
     }
     
     @Override
-    public SeanceEnseignant find(int id) throws SQLException {
+    public SeanceEnseignant find(int id) {
         SeanceEnseignant se = new SeanceEnseignant();
         return se;
     }
 
-    public SeanceEnseignant find(int seance, int enseignant) throws SQLException {
-        SeanceEnseignant actuel = seanceEnseignants.get(0);
-        for (int i = 1; i < seanceEnseignants.size()+1; i++) {
+    public SeanceEnseignant find(int seance, int enseignant) {
+        for (int i = 0; i < seanceEnseignants.size()+1; i++) {
+            SeanceEnseignant actuel = seanceEnseignants.get(i);
             if ((actuel.getSeance() == seance) && (actuel.getEnseignant() == enseignant)) {
                 return actuel;
-            } else {
-                actuel = seanceEnseignants.get(i);
             }
         }
         SeanceEnseignant pasTrouve = new SeanceEnseignant();
         return pasTrouve;
     }
     
-    public ArrayList<Integer> listeIdSeances(int idProf) throws SQLException {
+    public ArrayList<Integer> listeIdSeances(int idProf) {
         ArrayList<Integer> listeSeances = new ArrayList<>();
         SeanceEnseignant actuel = seanceEnseignants.get(0);
         for (int i = 1; i < seanceEnseignants.size()+1; i++) {
@@ -98,7 +96,7 @@ public class SeanceEnseignantDAO extends BaseDAO<SeanceEnseignant> {
         return listeSeances;
     }
     
-    public ArrayList<Integer> listeIdEnseignants(int seance) throws SQLException {
+    public ArrayList<Integer> listeIdEnseignants(int seance) {
         ArrayList<Integer> listeEnseignants = new ArrayList<>();
         SeanceEnseignant actuel = seanceEnseignants.get(0);
         for (int i = 1; i < seanceEnseignants.size()+1; i++) {

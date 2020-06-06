@@ -20,5 +20,7 @@ public class Main {
         
         gestionModele.ConnexionBDD();
         gestionModele.InitialiserTables();
+        boolean b = gestionVue.ConnexionUtilisateur(gestionModele, "christophe.baujault@ece.fr", "admin");
+        System.out.println(b);
     }
 }

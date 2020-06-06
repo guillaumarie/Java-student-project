@@ -72,17 +72,22 @@ public class SeanceDAO extends BaseDAO<Seance> {
     }
 
     @Override
-    public Seance find(int id) throws SQLException {
-        Seance actuel = seances.get(0);
-        for (int i = 1; i < seances.size()+1; i++) {
+    public Seance find(int id) {
+        for (int i = 0; i < seances.size()+1; i++) {
+            Seance actuel = seances.get(i);
             if (actuel.getId() == id) {
                 return actuel;
-            } else {
-                actuel = seances.get(i);
             }
         }
         Seance pasTrouve = new Seance();
         return pasTrouve;
+    }
+    
+    public int last(Connection conn) throws SQLException {
+        Statement stmt = conn.createStatement();
+        ResultSet rset = stmt.executeQuery("SELECT ID FROM Seance ORDER BY ID DESC LIMIT 1");
+        int id = rset.getInt("ID");
+        return id;
     }
     
     @Override
