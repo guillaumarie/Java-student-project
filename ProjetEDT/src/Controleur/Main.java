@@ -21,9 +21,6 @@ public class Main {
         // Connexion utilisateur
         gestionVue.ConnexionUtilisateur(gestionModele);
         // Afficher EDT
-        gestionVue.genererEDT(gestionModele);
-        
-        
-        
+        gestionVue.genererEDT(gestionModele); 
     }
 }
