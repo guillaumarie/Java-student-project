@@ -3,14 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Users/guill/Documents/ECE%20Paris/Ing%203/POO%20Java/Projet/Projet_Java/ProjetEDT/src/Modele/DAO/SiteDAO.java</file>
+            <file>file:/D:/Users/guill/Documents/ECE%20Paris/Ing%203/POO%20Java/Projet/Projet_Java/ProjetEDT/src/Modele/DAO/SeanceDAO.java</file>
             <file>file:/D:/Users/guill/Documents/ECE%20Paris/Ing%203/POO%20Java/Projet/Projet_Java/ProjetEDT/src/Controleur/GestionModele.java</file>
             <file>file:/D:/Users/guill/Documents/ECE%20Paris/Ing%203/POO%20Java/Projet/Projet_Java/ProjetEDT/src/Controleur/GestionVue.java</file>
-            <file>file:/D:/Users/guill/Documents/ECE%20Paris/Ing%203/POO%20Java/Projet/Projet_Java/ProjetEDT/src/Modele/DAO/CoursDAO.java</file>
             <file>file:/D:/Users/guill/Documents/ECE%20Paris/Ing%203/POO%20Java/Projet/Projet_Java/ProjetEDT/src/Modele/DAO/GroupeDAO.java</file>
+            <file>file:/D:/Users/guill/Documents/ECE%20Paris/Ing%203/POO%20Java/Projet/Projet_Java/ProjetEDT/src/Modele/DAO/CoursDAO.java</file>
             <file>file:/D:/Users/guill/Documents/ECE%20Paris/Ing%203/POO%20Java/Projet/Projet_Java/ProjetEDT/src/Controleur/Main.java</file>
-            <file>file:/D:/Users/guill/Documents/ECE%20Paris/Ing%203/POO%20Java/Projet/Projet_Java/ProjetEDT/src/Modele/DAO/EtudiantDAO.java</file>
-            <file>file:/D:/Users/guill/Documents/ECE%20Paris/Ing%203/POO%20Java/Projet/Projet_Java/ProjetEDT/src/Modele/DAO/TypeDAO.java</file>
+            <file>file:/D:/Users/guill/Documents/ECE%20Paris/Ing%203/POO%20Java/Projet/Projet_Java/ProjetEDT/src/Modele/POJO/Seance.java</file>
         </group>
     </open-files>
 </project-private>

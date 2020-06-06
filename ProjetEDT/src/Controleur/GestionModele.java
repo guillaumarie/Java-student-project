@@ -6,8 +6,11 @@
 package Controleur;
 
 import Modele.DAO.*;
+import Modele.POJO.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -99,59 +102,47 @@ public class GestionModele {
         this.InitialiserTables();
     }
     
-    public AdminDAO getAdminDAO() {
-        return adminDao;
+    public void ajouterSeance(int semaine, Date date, Time debut, Time fin, int cours, int type) {
+        Seance nouvelleSeance = new Seance(0, semaine, date, debut, fin, true, cours, type);
+        try {
+            seanceDao.create(nouvelleSeance, conn);
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionModele.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.ReinitialiserTables();
     }
     
-    public CoursDAO getCoursDAO() {
-        return coursDao;
+    public void supprimerSeance(Seance seanceSup) {
+        try {
+            seanceDao.delete(seanceSup, conn);
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionModele.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.ReinitialiserTables();
     }
     
-    public EnseignantDAO getEnseignantDAO() {
-        return enseignantDao;
+    public void modifierSeance(Seance seanceMaj) {
+        try {
+            seanceDao.update(seanceMaj, conn);
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionModele.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.ReinitialiserTables();
     }
     
-    public EtudiantDAO getEtudiantDAO() {
-        return etudiantDao;
-    }
     
-    public GroupeDAO getGroupeDAO() {
-        return groupeDao;
-    }
-    
-    public PromoDAO getPromoDAO() {
-        return promoDao;
-    }
-    
-    public ReferentDAO getReferentDAO() {
-        return referentDao;
-    }
-    
-    public SalleDAO getSalleDAO() {
-        return salleDao;
-    }
-    
-    public SeanceDAO getSeanceDAO() {
-        return seanceDao;
-    }
-
-    public SeanceEnseignantDAO getSEDAO() {
-        return seDao;
-    }
-    
-    public SeanceGroupeDAO getSGDAO() {
-        return sgDao;
-    }
-    
-    public SeanceSalleDAO getSSDAO() {
-        return ssDao;
-    }
-    
-    public SiteDAO getSiteDAO() {
-        return siteDao;
-    }
-    
-    public TypeDAO getTypeDAO() {
-        return typeDao;
-    }
+    public AdminDAO getAdminDAO() {return adminDao;}
+    public CoursDAO getCoursDAO() {return coursDao;}
+    public EnseignantDAO getEnseignantDAO() {return enseignantDao;}
+    public EtudiantDAO getEtudiantDAO() {return etudiantDao;}
+    public GroupeDAO getGroupeDAO() {return groupeDao;}
+    public PromoDAO getPromoDAO() {return promoDao;}
+    public ReferentDAO getReferentDAO() {return referentDao;}
+    public SalleDAO getSalleDAO() {return salleDao;}
+    public SeanceDAO getSeanceDAO() {return seanceDao;}
+    public SeanceEnseignantDAO getSEDAO() {return seDao;}
+    public SeanceGroupeDAO getSGDAO() {return sgDao;}
+    public SeanceSalleDAO getSSDAO() {return ssDao;}
+    public SiteDAO getSiteDAO() {return siteDao;}
+    public TypeDAO getTypeDAO() {return typeDao;}
 }
