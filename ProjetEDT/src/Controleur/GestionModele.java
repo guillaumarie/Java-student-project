@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -102,10 +103,24 @@ public class GestionModele {
         this.InitialiserTables();
     }
     
-    public void ajouterSeance(int semaine, Date date, Time debut, Time fin, int cours, int type) {
-        Seance nouvelleSeance = new Seance(0, semaine, date, debut, fin, true, cours, type);
+    // Gestion Seance
+    public void ajouterSeance(Seance nouvelleSeance, ArrayList<Integer> idSalles, ArrayList<Integer> idEnseignants,
+            ArrayList<Integer> idGroupes) {
         try {
             seanceDao.create(nouvelleSeance, conn);
+            int idSeance = seanceDao.last(conn);
+            for (int i = 0; i < idSalles.size(); i++) {
+                SeanceSalle NouvelleSS = new SeanceSalle(idSeance, idSalles.get(i));
+                ssDao.create(NouvelleSS, conn);
+            }
+            for (int i = 0; i < idEnseignants.size(); i++) {
+                SeanceEnseignant nouvelleSE = new SeanceEnseignant(idSeance, idEnseignants.get(i));
+                seDao.create(nouvelleSE, conn);
+            }
+            for (int i = 0; i < idGroupes.size(); i++) {
+                SeanceGroupe nouvelleSG = new SeanceGroupe(idSeance, idGroupes.get(i));
+                sgDao.create(nouvelleSG, conn);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(GestionModele.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -114,16 +129,13 @@ public class GestionModele {
     
     public void supprimerSeance(Seance seanceSup) {
         try {
+            int idSeance = seanceSup.getId();
+            ArrayList<Integer> idSalles = ssDao.listeIdSalles(idSeance);
+            for (int i = 0; i < idSalles.size(); i++) {
+                SeanceSalle ssSup = new SeanceSalle(idSeance, idSalles.get(i));
+                ssDao.delete(ssSup, conn);
+            }
             seanceDao.delete(seanceSup, conn);
-        } catch (SQLException ex) {
-            Logger.getLogger(GestionModele.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.ReinitialiserTables();
-    }
-    
-    public void modifierSeance(Seance seanceMaj) {
-        try {
-            seanceDao.update(seanceMaj, conn);
         } catch (SQLException ex) {
             Logger.getLogger(GestionModele.class.getName()).log(Level.SEVERE, null, ex);
         }

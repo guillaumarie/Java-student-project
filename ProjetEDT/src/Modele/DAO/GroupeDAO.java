@@ -60,26 +60,24 @@ public class GroupeDAO extends BaseDAO<Groupe> {
     }
 
     @Override
-    public Groupe find(int id) throws SQLException {
-        Groupe actuel = groupes.get(0);
-        for (int i = 1; i < groupes.size()+1; i++) {
+    public Groupe find(int id) {
+        for (int i = 0; i < groupes.size()+1; i++) {
+            Groupe actuel = groupes.get(i);
             if (actuel.getId() == id) {
                 return actuel;
-            } else {
-                actuel = groupes.get(i);
             }
         }
         Groupe pasTrouve = new Groupe();
         return pasTrouve;
     }
     
-    public String nom(int id) throws SQLException {
+    public String nom(int id) {
         Groupe groupe = this.find(id);
         String nom = groupe.getNom();
         return nom;
     }
     
-    public int idPromo(int id) throws SQLException {
+    public int idPromo(int id) {
         Groupe groupe = this.find(id);
         int idPromo = groupe.getPromo();
         return idPromo;

@@ -64,26 +64,24 @@ public class SalleDAO extends BaseDAO<Salle> {
     }
 
     @Override
-    public Salle find(int id) throws SQLException {
-        Salle actuel = salles.get(0);
-        for (int i = 1; i < salles.size()+1; i++) {
+    public Salle find(int id) {
+        for (int i = 0; i < salles.size()+1; i++) {
+            Salle actuel = salles.get(i);
             if (actuel.getId() == id) {
                 return actuel;
-            } else {
-                actuel = salles.get(i);
             }
         }
         Salle pasTrouve = new Salle();
         return pasTrouve;
     }
     
-    public String nom(int id) throws SQLException {
+    public String nom(int id) {
         Salle salle = this.find(id);
         String nom = salle.getNom();
         return nom;
     }
     
-    public int idSite(int id) throws SQLException {
+    public int idSite(int id) {
         Salle salle = this.find(id);
         int idSite = salle.getSite();
         return idSite;

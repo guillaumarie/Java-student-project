@@ -5,6 +5,9 @@
  */
 package vue;
 
+import Controleur.GestionModele;
+import Controleur.GestionVue;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -31,14 +34,19 @@ public class Connexion {
     private JTextField TF_MDP = new JTextField("");
     private String ID_Saisi = "";
     public String MDP_Saisi = "";
-    private boolean autorisation = true;
+    private boolean verif_connexion=false;
+    private GestionVue gestionVue =null;
+    private GestionModele gestionModele =null;
+    
 
-    public Connexion() {
-        int ret = 0;
+    public Connexion(GestionVue gestionVue_con, GestionModele gestionModele_con ) {
+
+        gestionVue=gestionVue_con;
+        gestionModele=gestionModele_con;
         JFrame application = new JFrame();
         application.setTitle("application");
         application.setSize(600, 400);
-        application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         application.setLocationRelativeTo(null);
         application.setVisible(true);
 
@@ -100,6 +108,7 @@ public class Connexion {
         application.add(principal);
         
         
+        
     }
 
     // recup ID et MDP from connexion
@@ -112,11 +121,12 @@ public class Connexion {
             MDP_Saisi = TF_MDP.getText();
             System.out.println("Id saisi " + ID_Saisi);
             System.out.println("Mot de passe saisi " + MDP_Saisi);
-            
-            if(autorisation == true){
-                Vue fen = new Vue();
+            verif_connexion=gestionVue.ConnexionUtilisateur(gestionModele, ID_Saisi, MDP_Saisi);
+            System.out.println(verif_connexion);
+            if(verif_connexion==true){
+                Vue fen = new Vue(gestionVue, gestionModele);
+                // fermer la fenetre de connexion
             }
-
         }
     }
 
@@ -130,7 +140,5 @@ public class Connexion {
         return retMDP;
     }
 
-    public static void main(String[] args) throws Exception {
-        Connexion con = new Connexion();
-    }
+    
 }

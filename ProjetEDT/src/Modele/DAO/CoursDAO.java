@@ -58,20 +58,18 @@ public class CoursDAO extends BaseDAO<Cours> {
     }
 
     @Override
-    public Cours find(int id) throws SQLException {
-        Cours actuel = cours.get(0);
-        for (int i = 1; i < cours.size()+1; i++) {
+    public Cours find(int id) {
+        for (int i = 0; i < cours.size()+1; i++) {
+            Cours actuel = cours.get(i);
             if (actuel.getId() == id) {
                 return actuel;
-            } else {
-                actuel = cours.get(i);
             }
         }
         Cours pasTrouve = new Cours();
         return pasTrouve;
     }
     
-    public String nom(int id) throws SQLException {
+    public String nom(int id) {
         Cours cours = this.find(id);
         String nom = cours.getNom();
         return nom;

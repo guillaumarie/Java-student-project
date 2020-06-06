@@ -65,9 +65,9 @@ public class AdminDAO extends BaseDAO<Admin> {
     }
 
     @Override
-    public Admin find(int id) throws SQLException {
-        Admin actuel = admins.get(0);
-        for (int i = 1; i < admins.size(); i++) {
+    public Admin find(int id) {
+        for (int i = 0; i < admins.size(); i++) {
+            Admin actuel = admins.get(0);
             if (actuel.getId() == id) {
                 return actuel;
             } else {
@@ -79,13 +79,11 @@ public class AdminDAO extends BaseDAO<Admin> {
     }
     
     // Pour connexion
-    public Admin find(String email, String password) throws SQLException {
-        Admin actuel = admins.get(0);
-        for (int i = 1; i < admins.size(); i++) {
-            if ((actuel.getEmail() == email) && (actuel.getPassword() == password)) {
+    public Admin find(String email, String password) {
+        for (int i = 0; i < admins.size(); i++) {
+            Admin actuel = admins.get(i);
+            if ((actuel.getEmail().equals(email)) && (actuel.getPassword().equals(password))) {
                 return actuel;
-            } else {
-                actuel = admins.get(i);
             }
         }
         Admin pasTrouve = new Admin();

@@ -1,5 +1,7 @@
 package Vue;
 
+import Controleur.GestionModele;
+import Controleur.GestionVue;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -32,9 +34,14 @@ public class Vue extends JFrame {
     private JTextField TF_Salle = new JTextField("");
     private JTextField TF_Nom = new JTextField("");
     private JTextField TF_Semaine = new JTextField("");
+    private int Semaine = 17;
+    private GestionVue gestionVue = null;
+    private GestionModele gestionModele = null;
 
-    public Vue() {
-        
+    public Vue(GestionVue gestionVue_con, GestionModele gestionModele_con) {
+
+        gestionVue = gestionVue_con;
+        gestionModele = gestionModele_con;
         JFrame application = new JFrame();
         application.setTitle("application");
         application.setSize(1200, 1000);
@@ -96,7 +103,6 @@ public class Vue extends JFrame {
         JLabel label_Salle = new JLabel("Recherche par Salle");
         JButton Button_TF_Search_Salle = new JButton("OK");
         Button_TF_Search_Salle.addActionListener(new BoutonListener_Salle());
-
 
         TF_Salle.setFont(police);
         TF_Salle.setPreferredSize(new Dimension(150, 30));
@@ -250,47 +256,15 @@ public class Vue extends JFrame {
                             lig_case_edt.setBackground(Color.yellow);
                             case_edt.setBackground(Color.yellow);
                         }
-                        
-                        
-                        
-                        if (lig_edt == 4 && col_edt == 5) {
-                            if (lig_case == 1) {
-                                lig_case_edt.add(new JLabel("Maths"));
+                        System.out.println("size :" + gestionVue.getSemaines().size());
+                        for (int m = 0; m < gestionVue.getSemaines().size(); ++m) {
+                            System.out.println("ici");
+                            System.out.println(m);
+                            if (gestionVue.getSemaines().get(m) == Semaine) {
+                                System.out.println(m);
                             }
-                            if (lig_case == 2) {
-                                lig_case_edt.add(new JLabel("LECOR"));
-                            }
-                            if (lig_case == 3) {
-                                lig_case_edt.add(new JLabel("P445"));
-                            }
-                            if (lig_case == 4) {
-                                lig_case_edt.add(new JLabel("ING3 Gr01"));
-                            }
-                            if (lig_case == 5) {
-                                lig_case_edt.add(new JLabel("COURS"));
-                            }
-                            lig_case_edt.setBackground(Color.RED);
-                            case_edt.setBackground(Color.RED);
                         }
-                        if (lig_edt == 4 && col_edt == 4) {
-                            if (lig_case == 1) {
-                                lig_case_edt.add(new JLabel("Maths"));
-                            }
-                            if (lig_case == 2) {
-                                lig_case_edt.add(new JLabel("LECOR"));
-                            }
-                            if (lig_case == 3) {
-                                lig_case_edt.add(new JLabel("P445"));
-                            }
-                            if (lig_case == 4) {
-                                lig_case_edt.add(new JLabel("ING3 Gr01"));
-                            }
-                            if (lig_case == 5) {
-                                lig_case_edt.add(new JLabel("COURS"));
-                            }
-                            lig_case_edt.setBackground(Color.BLUE);
-                            case_edt.setBackground(Color.BLUE);
-                        }
+
                         gbcCase.gridx = 0;
                         gbcCase.gridy = lig_case;
                         gbcCase.weightx = 1;
@@ -344,6 +318,7 @@ public class Vue extends JFrame {
             System.out.println("nom saisi " + Nom_Saisi);
         }
     }
+
     class BoutonListener_Semaine implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
@@ -353,6 +328,7 @@ public class Vue extends JFrame {
             System.out.println("semaine saisi " + Semaine_Saisi);
         }
     }
+
     class ModifCours implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {

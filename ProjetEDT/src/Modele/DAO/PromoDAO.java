@@ -58,20 +58,18 @@ public class PromoDAO extends BaseDAO<Promo> {
     }
 
     @Override
-    public Promo find(int id) throws SQLException {
-        Promo actuel = promos.get(0);
-        for (int i = 1; i < promos.size()+1; i++) {
+    public Promo find(int id) {
+        for (int i = 0; i < promos.size()+1; i++) {
+            Promo actuel = promos.get(i);
             if (actuel.getId() == id) {
                 return actuel;
-            } else {
-                actuel = promos.get(i);
             }
         }
         Promo pasTrouve = new Promo();
         return pasTrouve;
     }
     
-    public String nom(int id) throws SQLException {
+    public String nom(int id) {
         Promo promo = this.find(id);
         String nom = promo.getNom();
         return nom;
