@@ -307,6 +307,7 @@ public class GestionVue {
                 } catch (SQLException ex) {
                     Logger.getLogger(GestionVue.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                break;
         }
     }
     

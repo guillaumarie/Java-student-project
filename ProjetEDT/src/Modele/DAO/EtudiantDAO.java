@@ -91,7 +91,7 @@ public class EtudiantDAO extends BaseDAO<Etudiant> {
     public Etudiant find(String email, String password) throws SQLException {
         Etudiant actuel = etudiants.get(0);
         for (int i = 1; i < etudiants.size(); i++) {
-            if ((actuel.getEmail() == email) && (actuel.getPassword() == password)) {
+            if ((actuel.getEmail() .equals(email) ) && (actuel.getPassword() .equals(password) )) {
                 return actuel;
             } else {
                 actuel = etudiants.get(i);

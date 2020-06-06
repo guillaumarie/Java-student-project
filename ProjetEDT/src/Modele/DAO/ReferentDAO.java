@@ -82,7 +82,7 @@ public class ReferentDAO extends BaseDAO<Referent> {
     public Referent find(String email, String password) throws SQLException {
         Referent actuel = referents.get(0);
         for (int i = 1; i < referents.size(); i++) {
-            if ((actuel.getEmail() == email) && (actuel.getPassword() == password)) {
+            if ((actuel.getEmail().equals(email)) && (actuel.getPassword().equals(password))) {
                 return actuel;
             } else {
                 actuel = referents.get(i);

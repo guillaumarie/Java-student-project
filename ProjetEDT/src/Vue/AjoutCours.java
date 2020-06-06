@@ -269,7 +269,7 @@ public class AjoutCours {
         }
     }
 
-//    public static void main(String[] args) throws Exception {
-//        AjoutCours con = new AjoutCours();
-//    }
+    public static void main(String[] args) throws Exception {
+        AjoutCours con = new AjoutCours();
+    }
 }

@@ -82,7 +82,7 @@ public class AdminDAO extends BaseDAO<Admin> {
     public Admin find(String email, String password) throws SQLException {
         Admin actuel = admins.get(0);
         for (int i = 1; i < admins.size(); i++) {
-            if ((actuel.getEmail() == email) && (actuel.getPassword() == password)) {
+            if ((actuel.getEmail().equals(email) ) && (actuel.getPassword().equals(password))) {
                 return actuel;
             } else {
                 actuel = admins.get(i);
