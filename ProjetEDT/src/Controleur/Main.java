@@ -5,6 +5,8 @@
  */
 package Controleur;
 
+import vue.Connexion;
+
 /**
  *
  * @author guill
@@ -18,12 +20,9 @@ public class Main {
         
         gestionModele.ConnexionBDD();
         gestionModele.InitialiserTables();
-        // Connexion utilisateur
         gestionVue.ConnexionUtilisateur(gestionModele);
-        // Afficher EDT
         gestionVue.genererEDT(gestionModele);
-        
-        
+        Connexion con = new Connexion();
         
     }
 }

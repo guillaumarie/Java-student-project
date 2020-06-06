@@ -67,7 +67,7 @@ public class ReferentDAO extends BaseDAO<Referent> {
     @Override
     public Referent find(int id) throws SQLException {
         Referent actuel = referents.get(0);
-        for (int i = 1; i < referents.size()+1; i++) {
+        for (int i = 1; i < referents.size(); i++) {
             if (actuel.getId() == id) {
                 return actuel;
             } else {
@@ -81,7 +81,7 @@ public class ReferentDAO extends BaseDAO<Referent> {
     // Pour connexion
     public Referent find(String email, String password) throws SQLException {
         Referent actuel = referents.get(0);
-        for (int i = 1; i < referents.size()+1; i++) {
+        for (int i = 1; i < referents.size(); i++) {
             if ((actuel.getEmail() == email) && (actuel.getPassword() == password)) {
                 return actuel;
             } else {

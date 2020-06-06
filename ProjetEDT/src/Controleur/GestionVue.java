@@ -6,32 +6,37 @@
 package Controleur;
 
 import Modele.POJO.*;
-import Vue.Connexion;
+import Vue.Vue;
+
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import vue.Connexion;
 
 /**
  *
  * @author guill
  */
 public class GestionVue {
-    
+
     private int typeSession;
     private Admin sessionAdmin;
     private Referent sessionReferent;
     private Enseignant sessionEnseignant;
     private Etudiant sessionEtudiant;
-    
+
     public GestionVue() {
     }
     
+
     public void ConnexionUtilisateur(GestionModele gestionModele) {
         String email = "";
         String password = "";
+        
+
         try {
             sessionAdmin = gestionModele.getAdminDAO().find(email, password);
             if (sessionAdmin.getId() != 0) {
@@ -53,8 +58,8 @@ public class GestionVue {
             Logger.getLogger(GestionVue.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void genererEDT (GestionModele gestionModele) {
+
+    public void genererEDT(GestionModele gestionModele) {
         switch (typeSession) {
             case 1:
                 break;
@@ -63,7 +68,7 @@ public class GestionVue {
             case 3:
                 try {
                     int id = sessionEnseignant.getId();
-                    
+
                     String nom = sessionEnseignant.getNom();
                     String prenom = sessionEnseignant.getPrenom();
                     ArrayList<Integer> listeSemaines = new ArrayList<>();
@@ -77,13 +82,12 @@ public class GestionVue {
                     ArrayList<String> listeTypes = new ArrayList<>();
                     ArrayList<String> listeSites = new ArrayList<>();
                     ArrayList<ArrayList<String>> listeSalles = new ArrayList<>();
-                    
-                    
+
                     ArrayList<Integer> idSeances = gestionModele.getSEDAO().listeIdSeances(id);
                     for (int i = 0; i < idSeances.size(); i++) {
                         int idActuel = idSeances.get(i);
                         Seance actuelle = gestionModele.getSeanceDAO().find(idActuel);
-                        
+
                         listeSemaines.add(actuelle.getSemaine());
                         listeDates.add(actuelle.getDate());
                         listeHeuresDebut.add(actuelle.getDebut());
@@ -111,7 +115,7 @@ public class GestionVue {
                         String nomSite = gestionModele.getSiteDAO().nom(idSite);
                         listeSites.add(nomSite);
                         listeSalles.add(nomsSalles);
-                        
+
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(GestionVue.class.getName()).log(Level.SEVERE, null, ex);
@@ -120,7 +124,7 @@ public class GestionVue {
             case 4:
                 try {
                     int id = sessionEtudiant.getId();
-                    
+
                     String nom = sessionEtudiant.getNom();
                     String prenom = sessionEtudiant.getPrenom();
                     int numero = sessionEtudiant.getNumero();
@@ -137,8 +141,7 @@ public class GestionVue {
                     ArrayList<ArrayList<String>> listeSalles = new ArrayList<>();
                     ArrayList<ArrayList<String>> listeNomProfs = new ArrayList<>();
                     ArrayList<ArrayList<String>> listePrenomProfs = new ArrayList<>();
-                    
-                    
+
                     int idGroupe = sessionEtudiant.getGroupe();
                     groupe = gestionModele.getGroupeDAO().nom(idGroupe);
                     int idPromo = gestionModele.getGroupeDAO().idPromo(idGroupe);
@@ -147,7 +150,7 @@ public class GestionVue {
                     for (int i = 0; i < idSeances.size(); i++) {
                         int idActuel = idSeances.get(i);
                         Seance actuelle = gestionModele.getSeanceDAO().find(idActuel);
-                        
+
                         listeSemaines.add(actuelle.getSemaine());
                         listeDates.add(actuelle.getDate());
                         listeHeuresDebut.add(actuelle.getDebut());
@@ -166,7 +169,7 @@ public class GestionVue {
                         String nomSite = gestionModele.getSiteDAO().nom(idSite);
                         listeSites.add(nomSite);
                         listeSalles.add(nomsSalles);
-                        
+
                         ArrayList<Integer> idProfs = gestionModele.getSEDAO().listeIdEnseignants(idActuel);
                         ArrayList<String> nomsProfs = new ArrayList<>();
                         ArrayList<String> prenomsProfs = new ArrayList<>();
@@ -176,7 +179,7 @@ public class GestionVue {
                         }
                         listeNomProfs.add(prenomsProfs);
                         listePrenomProfs.add(nomsProfs);
-                        
+
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(GestionVue.class.getName()).log(Level.SEVERE, null, ex);

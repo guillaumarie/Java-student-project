@@ -76,7 +76,7 @@ public class EtudiantDAO extends BaseDAO<Etudiant> {
     @Override
     public Etudiant find(int id) throws SQLException {
         Etudiant actuel = etudiants.get(0);
-        for (int i = 1; i < etudiants.size()+1; i++) {
+        for (int i = 1; i < etudiants.size(); i++) {
             if (actuel.getId() == id) {
                 return actuel;
             } else {
@@ -90,7 +90,7 @@ public class EtudiantDAO extends BaseDAO<Etudiant> {
     // Pour connexion
     public Etudiant find(String email, String password) throws SQLException {
         Etudiant actuel = etudiants.get(0);
-        for (int i = 1; i < etudiants.size()+1; i++) {
+        for (int i = 1; i < etudiants.size(); i++) {
             if ((actuel.getEmail() == email) && (actuel.getPassword() == password)) {
                 return actuel;
             } else {
