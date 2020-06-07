@@ -74,7 +74,7 @@ public class SeanceSalleDAO extends BaseDAO<SeanceSalle> {
     }
 
     public SeanceSalle find(int seance, int salle) {
-        for (int i = 0; i < seanceSalles.size()+1; i++) {
+        for (int i = 0; i < seanceSalles.size(); i++) {
             SeanceSalle actuel = seanceSalles.get(i);
             if ((actuel.getSeance() == seance) && (actuel.getSalle() == salle)) {
                 return actuel;
@@ -86,7 +86,7 @@ public class SeanceSalleDAO extends BaseDAO<SeanceSalle> {
     
     public ArrayList<Integer> listeIdSalles(int seance) {
         ArrayList<Integer> listeSalles = new ArrayList<>();
-        for (int i = 0; i < seanceSalles.size()+1; i++) {
+        for (int i = 0; i < seanceSalles.size(); i++) {
             SeanceSalle actuel = seanceSalles.get(i);
             if (actuel.getSeance() == seance) {
                 listeSalles.add(actuel.getSalle());

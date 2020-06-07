@@ -5,7 +5,7 @@
  */
 package Controleur;
 
-import Vue.Vue;
+import Vue.*;
 import vue.Connexion;
 
 /**
@@ -25,5 +25,7 @@ public class Main {
         boolean b = gestionVue.ConnexionUtilisateur(gestionModele, "killian.lennon@edu.ece.fr", "2222");
         System.out.println(b);
         Connexion con = new Connexion(gestionVue, gestionModele);
+        gestionVue.genererEDT(gestionModele);
+        Graphique graphe = new Graphique(gestionVue, gestionModele);
     }
 }

@@ -65,7 +65,7 @@ public class SalleDAO extends BaseDAO<Salle> {
 
     @Override
     public Salle find(int id) {
-        for (int i = 0; i < salles.size()+1; i++) {
+        for (int i = 0; i < salles.size(); i++) {
             Salle actuel = salles.get(i);
             if (actuel.getId() == id) {
                 return actuel;

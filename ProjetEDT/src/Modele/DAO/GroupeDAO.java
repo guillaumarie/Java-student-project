@@ -61,7 +61,7 @@ public class GroupeDAO extends BaseDAO<Groupe> {
 
     @Override
     public Groupe find(int id) {
-        for (int i = 0; i < groupes.size()+1; i++) {
+        for (int i = 0; i < groupes.size(); i++) {
             Groupe actuel = groupes.get(i);
             if (actuel.getId() == id) {
                 return actuel;

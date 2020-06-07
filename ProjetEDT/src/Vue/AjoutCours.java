@@ -25,7 +25,7 @@ import javax.swing.JTextField;
  * @author killian
  */
 
-public class AjoutCours {
+public class AjoutCours extends JFrame{
 
     private JTextField TF_Ajout_Semaine = new JTextField("");
     private JTextField TF_Ajout_Date = new JTextField("");
@@ -42,12 +42,11 @@ public class AjoutCours {
 
     public AjoutCours() {
         int ret = 0;
-        JFrame application = new JFrame();
-        application.setTitle("Ajout de cours");
-        application.setSize(600, 400);
+        this.setTitle("Ajout de cours");
+        this.setSize(600, 400);
         //application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        application.setLocationRelativeTo(null);
-        application.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
 
         JPanel principal = new JPanel();
 
@@ -225,7 +224,7 @@ public class AjoutCours {
         Ajout_Panel.add(suppr_button_Panel, gbcAjout);
 
         principal.add(Ajout_Panel, gbcPrincipal);
-        application.add(principal);
+        this.add(principal);
     }
 
     // recup ID et MDP from connexion
@@ -249,6 +248,10 @@ public class AjoutCours {
         }
     }
 
+    public void close(){
+        this.dispose();
+    }
+    
     class BoutonListenerSuppr implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
@@ -267,9 +270,5 @@ public class AjoutCours {
             }
 
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        AjoutCours con = new AjoutCours();
     }
 }

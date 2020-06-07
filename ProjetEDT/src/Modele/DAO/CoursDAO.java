@@ -59,7 +59,7 @@ public class CoursDAO extends BaseDAO<Cours> {
 
     @Override
     public Cours find(int id) {
-        for (int i = 0; i < cours.size()+1; i++) {
+        for (int i = 0; i < cours.size(); i++) {
             Cours actuel = cours.get(i);
             if (actuel.getId() == id) {
                 return actuel;
