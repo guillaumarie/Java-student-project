@@ -28,27 +28,25 @@ import Vue.Vue;
  *
  * @author killian
  */
-public class Connexion {
+public class Connexion extends JFrame{
 
     private JTextField TF_ID = new JTextField("");
     private JTextField TF_MDP = new JTextField("");
     private String ID_Saisi = "";
     public String MDP_Saisi = "";
-    private boolean verif_connexion=false;
-    private GestionVue gestionVue =null;
-    private GestionModele gestionModele =null;
-    
+    private boolean verif_connexion = false;
+    private GestionVue gestionVue = null;
+    private GestionModele gestionModele = null;
 
-    public Connexion(GestionVue gestionVue_con, GestionModele gestionModele_con ) {
+    public Connexion(GestionVue gestionVue_con, GestionModele gestionModele_con) {
 
-        gestionVue=gestionVue_con;
-        gestionModele=gestionModele_con;
-        JFrame application = new JFrame();
-        application.setTitle("application");
-        application.setSize(600, 400);
+        gestionVue = gestionVue_con;
+        gestionModele = gestionModele_con;
+        this.setTitle("application");
+        this.setSize(600, 400);
         //application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        application.setLocationRelativeTo(null);
-        application.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
 
         JPanel principal = new JPanel();
 
@@ -105,12 +103,14 @@ public class Connexion {
         gbcPrincipal.fill = GridBagConstraints.BOTH;
         gbcPrincipal.anchor = GridBagConstraints.CENTER;
         principal.add(connexion_button_Panel, gbcPrincipal);
-        application.add(principal);
-        
-        
-        
+        this.add(principal);
+
     }
 
+    
+    public void close(){
+        this.dispose();
+    }
     // recup ID et MDP from connexion
     class BoutonListener implements ActionListener {
 
@@ -119,12 +119,11 @@ public class Connexion {
 //            System.out.println("Mot de passe " + TF_MDP.getText());
             ID_Saisi = TF_ID.getText();
             MDP_Saisi = TF_MDP.getText();
-            System.out.println("Id saisi " + ID_Saisi);
-            System.out.println("Mot de passe saisi " + MDP_Saisi);
-            verif_connexion=gestionVue.ConnexionUtilisateur(gestionModele, ID_Saisi, MDP_Saisi);
-            System.out.println(verif_connexion);
-            if(verif_connexion==true){
-                Vue fen = new Vue(gestionVue, gestionModele);
+            verif_connexion = gestionVue.ConnexionUtilisateur(gestionModele, ID_Saisi, MDP_Saisi);
+
+            if (verif_connexion == true) {
+                Vue fen = new Vue(gestionVue, gestionModele, 17, 1);
+                close();
                 // fermer la fenetre de connexion
             }
         }
@@ -140,5 +139,4 @@ public class Connexion {
         return retMDP;
     }
 
-    
 }
