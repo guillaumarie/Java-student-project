@@ -74,7 +74,7 @@ public class SeanceGroupeDAO extends BaseDAO<SeanceGroupe> {
     }
 
     public SeanceGroupe find(int seance, int groupe) {
-        for (int i = 0; i < seanceGroupes.size()+1; i++) {
+        for (int i = 0; i < seanceGroupes.size(); i++) {
             SeanceGroupe actuel = seanceGroupes.get(i);
             if ((actuel.getSeance() == seance) && (actuel.getGroupe() == groupe)) {
                 return actuel;
@@ -86,7 +86,7 @@ public class SeanceGroupeDAO extends BaseDAO<SeanceGroupe> {
     
     public ArrayList<Integer> listeIdSeances(int groupe) {
         ArrayList<Integer> listeSeances = new ArrayList<>();
-        for (int i = 0; i < seanceGroupes.size()+1; i++) {
+        for (int i = 0; i < seanceGroupes.size(); i++) {
             SeanceGroupe actuel = seanceGroupes.get(i);
             if (actuel.getGroupe() == groupe) {
                 listeSeances.add(actuel.getSeance());
@@ -97,7 +97,7 @@ public class SeanceGroupeDAO extends BaseDAO<SeanceGroupe> {
     
     public ArrayList<Integer> listeIdGroupes(int seance) {
         ArrayList<Integer> listeGroupes = new ArrayList<>();
-        for (int i = 0; i < seanceGroupes.size()+1; i++) {
+        for (int i = 0; i < seanceGroupes.size(); i++) {
             SeanceGroupe actuel = seanceGroupes.get(i);
             if (actuel.getSeance() == seance) {
                 listeGroupes.add(actuel.getGroupe());

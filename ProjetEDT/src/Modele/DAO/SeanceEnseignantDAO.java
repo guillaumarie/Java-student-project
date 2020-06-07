@@ -74,7 +74,7 @@ public class SeanceEnseignantDAO extends BaseDAO<SeanceEnseignant> {
     }
 
     public SeanceEnseignant find(int seance, int enseignant) {
-        for (int i = 0; i < seanceEnseignants.size()+1; i++) {
+        for (int i = 0; i < seanceEnseignants.size(); i++) {
             SeanceEnseignant actuel = seanceEnseignants.get(i);
             if ((actuel.getSeance() == seance) && (actuel.getEnseignant() == enseignant)) {
                 return actuel;
@@ -87,7 +87,7 @@ public class SeanceEnseignantDAO extends BaseDAO<SeanceEnseignant> {
     public ArrayList<Integer> listeIdSeances(int idProf) {
         ArrayList<Integer> listeSeances = new ArrayList<>();
         SeanceEnseignant actuel = seanceEnseignants.get(0);
-        for (int i = 1; i < seanceEnseignants.size()+1; i++) {
+        for (int i = 1; i < seanceEnseignants.size(); i++) {
             if (actuel.getEnseignant() == idProf) {
                 listeSeances.add(actuel.getSeance());
             }
@@ -99,7 +99,7 @@ public class SeanceEnseignantDAO extends BaseDAO<SeanceEnseignant> {
     public ArrayList<Integer> listeIdEnseignants(int seance) {
         ArrayList<Integer> listeEnseignants = new ArrayList<>();
         SeanceEnseignant actuel = seanceEnseignants.get(0);
-        for (int i = 1; i < seanceEnseignants.size()+1; i++) {
+        for (int i = 1; i < seanceEnseignants.size(); i++) {
             if (actuel.getSeance() == seance) {
                 listeEnseignants.add(actuel.getEnseignant());
             }

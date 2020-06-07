@@ -59,7 +59,7 @@ public class TypeDAO extends BaseDAO<Type> {
 
     @Override
     public Type find(int id) {
-        for (int i = 0; i < types.size()+1; i++) {
+        for (int i = 0; i < types.size(); i++) {
             Type actuel = types.get(i);
             if (actuel.getId() == id) {
                 return actuel;

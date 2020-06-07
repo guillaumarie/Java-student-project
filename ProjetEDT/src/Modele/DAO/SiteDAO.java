@@ -59,7 +59,7 @@ public class SiteDAO extends BaseDAO<Site> {
 
     @Override
     public Site find(int id) {
-        for (int i = 0; i < sites.size()+1; i++) {
+        for (int i = 0; i < sites.size(); i++) {
             Site actuel = sites.get(i);
             if (actuel.getId() == id) {
                 return actuel;

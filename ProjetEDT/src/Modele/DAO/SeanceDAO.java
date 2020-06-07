@@ -73,7 +73,7 @@ public class SeanceDAO extends BaseDAO<Seance> {
 
     @Override
     public Seance find(int id) {
-        for (int i = 0; i < seances.size()+1; i++) {
+        for (int i = 0; i < seances.size(); i++) {
             Seance actuel = seances.get(i);
             if (actuel.getId() == id) {
                 return actuel;

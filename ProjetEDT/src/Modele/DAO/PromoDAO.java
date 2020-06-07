@@ -59,7 +59,7 @@ public class PromoDAO extends BaseDAO<Promo> {
 
     @Override
     public Promo find(int id) {
-        for (int i = 0; i < promos.size()+1; i++) {
+        for (int i = 0; i < promos.size(); i++) {
             Promo actuel = promos.get(i);
             if (actuel.getId() == id) {
                 return actuel;
